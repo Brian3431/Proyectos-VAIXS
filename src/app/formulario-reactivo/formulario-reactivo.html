@@ -1,0 +1,74 @@
+<div class="contenedor">
+  <h2>Pedido de Producto</h2>
+
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+    <div>
+      <label>Nombre del Cliente</label>
+      <input type="text" formControlName="nombreCliente" (keypress)="soloLetras($event)">
+      <span *ngIf="formulario.get('nombreCliente')?.invalid && formulario.get('nombreCliente')?.touched">
+        El nombre es requerido
+      </span>
+    </div>
+
+    <div>
+      <label>Producto</label>
+      <select formControlName="producto">
+        <option value="">Selecciona un producto</option>
+        <option value="Laptop">Laptop</option>
+        <option value="Teléfono">Teléfono</option>
+        <option value="Tablet">Tablet</option>
+        <option value="Audífonos">Audífonos</option>
+      </select>
+      <span *ngIf="formulario.get('producto')?.invalid && formulario.get('producto')?.touched">
+        Selecciona un producto
+      </span>
+    </div>
+
+    <div>
+      <label>Cantidad</label>
+      <input type="number" formControlName="cantidad">
+      <span *ngIf="formulario.get('cantidad')?.invalid && formulario.get('cantidad')?.touched">
+        La cantidad mínima es 1
+      </span>
+    </div>
+
+    <div>
+      <label>Dirección de Entrega</label>
+      <input type="text" formControlName="direccion">
+      <span *ngIf="formulario.get('direccion')?.invalid && formulario.get('direccion')?.touched">
+        La dirección es requerida
+      </span>
+    </div>
+
+    <div>
+      <label>Teléfono</label>
+      <input type="text" formControlName="telefono" maxlength="9" (keypress)="soloNumeros($event)">
+      <span *ngIf="formulario.get('telefono')?.invalid && formulario.get('telefono')?.touched">
+        Ingresa un teléfono válido (8 a 9 dígitos)
+      </span>
+    </div>
+
+    <div>
+      <label>Detalles</label>
+      <textarea formControlName="detalles"></textarea>
+    </div>
+
+    <button type="submit" [disabled]="formulario.invalid">Realizar Pedido</button>
+
+  </form>
+</div>
+
+<!-- Separador -->
+<div class="contenedor lista-pedidos" *ngIf="pedidos.length > 0">
+  <h3>Pedidos Realizados</h3>
+  <div class="pedido" *ngFor="let pedido of pedidos; let i = index">
+    <p><strong>Cliente:</strong> {{ pedido.nombreCliente }}</p>
+    <p><strong>Producto:</strong> {{ pedido.producto }}</p>
+    <p><strong>Cantidad:</strong> {{ pedido.cantidad }}</p>
+    <p><strong>Dirección:</strong> {{ pedido.direccion }}</p>
+    <p><strong>Teléfono:</strong> {{ pedido.telefono }}</p>
+    <p *ngIf="pedido.detalles"><strong>Detalles:</strong> {{ pedido.detalles }}</p>
+    <button class="btn-eliminar" (click)="eliminarPedido(i)">Eliminar</button>
+  </div>
+</div>

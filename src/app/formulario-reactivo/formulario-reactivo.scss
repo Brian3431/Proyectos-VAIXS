@@ -1,0 +1,116 @@
+.contenedor {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      label {
+        font-weight: bold;
+        color: #555;
+        font-size: 14px;
+      }
+
+      input, select, textarea {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        outline: none;
+        transition: border 0.3s;
+
+        &:focus {
+          border-color: #6c63ff;
+        }
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
+
+      span {
+        color: red;
+        font-size: 12px;
+      }
+    }
+
+    button {
+      padding: 12px;
+      background-color: #6c63ff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+
+      &:hover:not(:disabled) {
+        background-color: #574fd6;
+      }
+
+      &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }  
+    }
+    
+  }
+}
+.lista-pedidos {
+  margin-top: 50px;
+  border-top: 2px solid #6c63ff;
+  padding-top: 20px;
+
+  h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .pedido {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+
+    p {
+      margin: 5px 0;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .btn-eliminar {
+      margin-top: 10px;
+      padding: 8px 15px;
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+
+      &:hover {
+        background-color: #cc0000;
+      }
+    }
+  }
+}

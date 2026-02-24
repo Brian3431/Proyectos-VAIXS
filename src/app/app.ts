@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { FormularioReactivoComponent } from "./formulario-reactivo/formulario-reactivo";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, FormularioReactivoComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

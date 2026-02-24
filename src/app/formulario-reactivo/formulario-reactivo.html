@@ -18,7 +18,7 @@
         <option value="Laptop">Laptop</option>
         <option value="Teléfono">Teléfono</option>
         <option value="Tablet">Tablet</option>
-        <option value="Audífonos">Audífonos</option>
+        <option value="Audífonos">Audifonos</option>
       </select>
       <span *ngIf="formulario.get('producto')?.invalid && formulario.get('producto')?.touched">
         Selecciona un producto
@@ -27,25 +27,25 @@
 
     <div>
       <label>Cantidad</label>
-      <input type="number" formControlName="cantidad">
+      <input type="number" formControlName="cantidad" min="1" (keypress)="soloNumeros($event)">
       <span *ngIf="formulario.get('cantidad')?.invalid && formulario.get('cantidad')?.touched">
-        La cantidad mínima es 1
+        La cantidad minima es 1
       </span>
     </div>
 
     <div>
-      <label>Dirección de Entrega</label>
+      <label>Direccion de Entrega</label>
       <input type="text" formControlName="direccion">
       <span *ngIf="formulario.get('direccion')?.invalid && formulario.get('direccion')?.touched">
-        La dirección es requerida
+        La direccion es requerida
       </span>
     </div>
 
     <div>
-      <label>Teléfono</label>
+      <label>Telefono</label>
       <input type="text" formControlName="telefono" maxlength="9" (keypress)="soloNumeros($event)">
       <span *ngIf="formulario.get('telefono')?.invalid && formulario.get('telefono')?.touched">
-        Ingresa un teléfono válido (8 a 9 dígitos)
+        Ingresa un telefono valido (8 a 9 digitos)
       </span>
     </div>
 
@@ -59,16 +59,34 @@
   </form>
 </div>
 
-<!-- Separador -->
 <div class="contenedor lista-pedidos" *ngIf="pedidos.length > 0">
   <h3>Pedidos Realizados</h3>
-  <div class="pedido" *ngFor="let pedido of pedidos; let i = index">
-    <p><strong>Cliente:</strong> {{ pedido.nombreCliente }}</p>
-    <p><strong>Producto:</strong> {{ pedido.producto }}</p>
-    <p><strong>Cantidad:</strong> {{ pedido.cantidad }}</p>
-    <p><strong>Dirección:</strong> {{ pedido.direccion }}</p>
-    <p><strong>Teléfono:</strong> {{ pedido.telefono }}</p>
-    <p *ngIf="pedido.detalles"><strong>Detalles:</strong> {{ pedido.detalles }}</p>
-    <button class="btn-eliminar" (click)="eliminarPedido(i)">Eliminar</button>
-  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Cliente</th>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Dirección</th>
+        <th>Teléfono</th>
+        <th>Detalles</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pedido of pedidos; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ pedido.nombreCliente }}</td>
+        <td>{{ pedido.producto }}</td>
+        <td>{{ pedido.cantidad }}</td>
+        <td>{{ pedido.direccion }}</td>
+        <td>{{ pedido.telefono }}</td>
+        <td>{{ pedido.detalles || '-' }}</td>
+        <td>
+          <button class="btn-eliminar" (click)="eliminarPedido(i)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
